@@ -3,6 +3,12 @@ uuid = "e9fadd82-7b4e-4ee0-a679-bebd8de1528f"
 authors = ["Joseph Bradley <joseph.bradley@kcl.ac.uk>"]
 version = "1.0.0-DEV"
 
+[deps]
+DataStructures = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
+Graphs = "86223c79-3864-5bf0-83f7-82e725a168b6"
+SimpleWeightedGraphs = "47aef6b3-ad0c-573a-a1e2-d07658019622"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
 [compat]
 julia = "1.9"
 

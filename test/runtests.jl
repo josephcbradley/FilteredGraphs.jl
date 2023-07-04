@@ -1,6 +1,6 @@
 using FilteredGraphs
-using Test
+using Test, Graphs
 
 @testset "FilteredGraphs.jl" begin
-    # Write your tests here.
+    include("planarity.jl")
 end
