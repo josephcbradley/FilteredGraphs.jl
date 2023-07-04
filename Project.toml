@@ -1,0 +1,13 @@
+name = "FilteredGraphs"
+uuid = "e9fadd82-7b4e-4ee0-a679-bebd8de1528f"
+authors = ["Joseph Bradley <joseph.bradley@kcl.ac.uk>"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.9"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
