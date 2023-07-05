@@ -310,7 +310,7 @@ function dfs_testing!(self, v)
     for w in self.ordered_adjs[v] #already ordered 
         ei = Edge(v, w)
         if !isempty(self.S) #stack is not empty
-            self.stack_bottom[ei] = top(self.S)
+            self.stack_bottom[ei] = first(self.S)
         else #stack is empty
             self.stack_bottom[ei] = root_pair(T)
         end
@@ -345,8 +345,8 @@ function dfs_testing!(self, v)
         trim_back_edges!(self, u)
         #side of e is side of highest returning edge 
         if self.lowpt[e] < self.height[u] #e has return edge
-            hl = top(self.S).L.high
-            hr = top(self.S).R.high
+            hl = first(self.S).L.high
+            hr = first(self.S).R.high
             if !isempty(hl) && (isempty(hr) || (self.lowpt[hl] > self.lowpt[hr]))
                 self.ref[e] = hl
             else
@@ -361,7 +361,7 @@ function edge_constraints!(self, ei, e)
     T = eltype(ei)
     P = empty_pair(T)
     #merge return edges of ei into P.R
-    while top(self.S) != self.stack_bottom[ei]
+    while first(self.S) != self.stack_bottom[ei]
         Q = pop!(self.S)
         if !isempty(Q.L)
             swap!(Q)
@@ -383,7 +383,7 @@ function edge_constraints!(self, ei, e)
     end
 
     #merge conflicting return edges of <e...> into P.LRPlanarity
-    while conflicting(top(self.S).L, ei, self) || conflicting(top(self.S).R, ei, self)
+    while conflicting(first(self.S).L, ei, self) || conflicting(first(self.S).R, ei, self)
         Q = pop!(self.S)
         if conflicting(Q.R, ei, self)
             swap!(Q)
@@ -412,7 +412,7 @@ end
 function trim_back_edges!(self, u)
     #trim back edges ending at u 
     #drop entire conflict pairs 
-    while !isempty(self.S) && (lowest(top(self.S), self) == self.height[u])
+    while !isempty(self.S) && (lowest(first(self.S), self) == self.height[u])
         P = pop!(self.S)
         if !isempty(P.L.low)
             self.side[P.L.low] = -1
