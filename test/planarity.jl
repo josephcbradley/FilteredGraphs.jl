@@ -2,16 +2,16 @@
     @testset "Aux functions tests" begin
         g = complete_graph(10)
         f = SimpleGraph()
-        add_vertices_from!(g, f)
+        FilteredGraphs.add_vertices_from!(g, f)
         @test nv(g) == nv(f)
-        add_edges_from!(g, f)
+        FilteredGraphs.add_edges_from!(g, f)
         @test g == f
     end
 
     @testset "LRP constructor tests" begin
         function lrp_constructor_test(g)
             try
-                lrp = LRPlanarity(g)
+                lrp = FilteredGraphs.LRPlanarity(g)
                 return true
             catch e
                 return false
@@ -43,7 +43,7 @@
             add_edge!(dfs_g, edge)
         end
 
-        self = LRPlanarity(dfs_g)
+        self = FilteredGraphs.LRPlanarity(dfs_g)
         #want to test dfs orientation 
         # make adjacency lists for dfs
         for v = 1:nv(self.G) #for all vertices in G,
@@ -56,7 +56,7 @@
             if self.height[v] == -one(T) #using -1 rather than nothing for type stability. 
                 self.height[v] = zero(T)
                 push!(self.roots, v)
-                dfs_orientation!(self, v)
+                FilteredGraphs.dfs_orientation!(self, v)
             end
         end
 
