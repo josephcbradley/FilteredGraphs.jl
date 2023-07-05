@@ -7,6 +7,7 @@ using SimpleWeightedGraphs
 # Write your package code here.
 
 include("planarity.jl")
+include("pmfg.jl")
 
 
 end
